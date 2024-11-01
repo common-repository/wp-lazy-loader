@@ -1,0 +1,8 @@
+!function($)
+{$.fn.WPLLJsFunc=function(wpll_attr,wpll_limit){var wpllFlag=null,$wpllWindow=$(window),wpll_limit=wpll_limit||0,wpll_attr=wpll_attr||"wp-lazy-loader",wpll_keywd="lazyLoad",wpll_curimg=this;wpll_curimg.one(wpll_keywd,function()
+{var $curimage=$(this),var1=$curimage.attr(wpll_attr);$curimage.removeAttr(wpll_attr);if(var1)
+{$curimage.attr("src",var1)}});var Wpll_loadFun=function()
+{var wpll_filter=wpll_curimg.filter(function()
+{var $curimgae=$(this);if(!$curimgae.is(":hidden"))
+{var Top=$wpllWindow.scrollTop(),Bottom=Top+$wpllWindow.height(),TopImage=$curimgae.offset().top,BottomImage=TopImage+$curimgae.height();return((BottomImage>=(Top-wpll_limit))&&(TopImage<=(Bottom+wpll_limit)))}});wpllFlag=wpll_filter.trigger(wpll_keywd);wpll_curimg=wpll_curimg.not(wpllFlag)};$wpllWindow.on("scroll."+wpll_keywd+" resize."+wpll_keywd+" lookup."+wpll_keywd+" touchend."+wpll_keywd,Wpll_loadFun);Wpll_loadFun();return this}}(jQuery);jQuery(document).ready(function($)
+{var wpll_attr='wp-lazy-loader';$("img["+wpll_attr+"],iframe["+wpll_attr+"]").WPLLJsFunc(wpll_attr,150)})
